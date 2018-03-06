@@ -20,7 +20,7 @@ class RemineTable extends Component {
                     {this.props.properties.map(property => (
                         <tr key={property.id}>
                             <td>{property.address}</td>
-                            <td>{property.buildingType}</td>
+                            <td>{property.buildingType.name}</td>
                             <td>{property.beds}</td>
                             <td>{property.baths}</td>
                         </tr>
