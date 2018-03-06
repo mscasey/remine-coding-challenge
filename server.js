@@ -49,6 +49,12 @@ function contentType(ext) {
     case '.js':
         ct = 'text/javascript';
         break;
+	case '.svg':
+	case '.png':
+	case '.jpg':
+	case '.jpeg':
+		ct = "application/octet-stream";
+		break;
     default:
         ct = 'text/plain';
         break;
