@@ -1,7 +1,5 @@
 {
-  "name": "front-end-interview-test",
-  "version": "0.1.0",
-  "private": true,
+  "name": "remine-coding-challenge",
   "dependencies": {
     "axios": "^0.16.2",
     "babel-loader": "^6.2.5",
@@ -29,5 +27,11 @@
     "style-loader": "^0.20.2",
     "webpack": "^2.1.0-beta.22",
     "webpack-cli": "^2.0.10"
+  },
+  "description": "#### Environment",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mscasey/remine-coding-challenge.git"
   }
 }
