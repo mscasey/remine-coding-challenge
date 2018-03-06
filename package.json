@@ -6,9 +6,11 @@
     "axios": "^0.16.2",
     "babel-loader": "^6.2.5",
     "prop-types": "^15.5.10",
+    "rc-slider": "^8.6.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.13"
+    "react-scripts": "1.0.13",
+    "react-select": "^1.0.0-rc.5"
   },
   "scripts": {
     "start": "react-scripts start",
