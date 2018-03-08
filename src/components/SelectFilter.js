@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select  from 'react-select';
 import 'react-select/dist/react-select.css';
+import './SelectFilter.css';
 
 export default class SelectFilter extends Component{
 	constructor(props){
@@ -20,8 +21,10 @@ export default class SelectFilter extends Component{
 	}
 	
 	render(){
-		return 	<div key={this.props.title}>
+		return 	<div key={this.props.title} className="selectFilter">
+					<div className="selectFilterTitle">{this.props.title}</div>
 					<Select
+						className="selectFilterSelector"
 						multi
 						onChange={(selected) => this.setState({selected})}
 						options={this.props.options}

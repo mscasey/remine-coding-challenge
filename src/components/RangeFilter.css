@@ -1,0 +1,25 @@
+.rangeFilterInput {
+	float: left;
+	width: 5%;
+	margin: 5px;
+	text-align:center;
+}
+
+.rangeFilterSlide {
+	float: left;
+	width: 80%;
+	margin-top:8px;
+}
+
+.rangeFilter {
+	border: 1px solid black;
+	clear: both;
+	width: 300px;
+	margin-right:auto;
+	margin-left:auto;
+}
+
+.rangeFilterTitle {
+	margin-right:auto;
+	margin-left:auto;
+}

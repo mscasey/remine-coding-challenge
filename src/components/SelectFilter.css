@@ -1,0 +1,16 @@
+.selectFilter {
+	border: 1px solid black;
+	clear: both;
+	width: 300px;
+	margin-right:auto;
+	margin-left:auto;
+}
+
+.selectFilterTitle {
+	margin-right:auto;
+	margin-left:auto;
+}
+
+.selectFilterSelector {
+	
+}
