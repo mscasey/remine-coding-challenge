@@ -38,7 +38,6 @@
 /******/
 /******/ 	// define getter function for harmory exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 				enumerable: true,
 /******/ 		Object.defineProperty(exports, name, {
 /******/ 			configurable: false,
 /******/ 			enumerable: true,
@@ -22875,7 +22874,7 @@ var Test = function (_Component) {
 				return filterBath(p) && filterBeds(p) && filterBuilding(p);
 			};
 
-			var filteredLocations = this.state.locations.filter(fullFilter);
+			var filteredLocations = properties.filter(fullFilter);
 
 			return filteredLocations;
 		}
@@ -22884,7 +22883,7 @@ var Test = function (_Component) {
 		value: function render() {
 			var _this4 = this;
 
-			var filteredLocations = this.filterProperties(properties);
+			var filteredLocations = this.filterProperties(this.state.locations);
 
 			return _react2.default.createElement(
 				'div',

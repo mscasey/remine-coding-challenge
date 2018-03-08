@@ -31,13 +31,13 @@ class Test extends Component {
 		
 		const fullFilter = (p) => filterBath(p) && filterBeds(p) && filterBuilding(p);
 		
-		const filteredLocations = this.state.locations.filter(fullFilter);
+		const filteredLocations = properties.filter(fullFilter);
 		
 		return filteredLocations;
 	}
 	
     render() {
-		const filteredLocations = this.filterProperties(properties);
+		const filteredLocations = this.filterProperties(this.state.locations);
 		
         return (
             <div className="testContainer">
