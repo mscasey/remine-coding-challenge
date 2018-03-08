@@ -23023,6 +23023,8 @@ var RangeFilter = function (_Component) {
 		value: function render() {
 			var min = this.state.min;
 			var max = this.state.max;
+			var sliderMin = min === 0 ? 0 : min || this.props.range[0];
+			var sliderMax = max === 0 ? 0 : max || this.props.range[1];
 			return _react2.default.createElement(
 				'div',
 				{ key: this.props.title, className: 'rangeFilter' },
@@ -23036,7 +23038,7 @@ var RangeFilter = function (_Component) {
 					onChange: onInput(this.updateMin.bind(this))
 				}),
 				_react2.default.createElement(_rcSlider.Range, { className: 'rangeFilterSlide',
-					value: [min || this.props.range[0], max || this.props.range[1]]
+					value: [sliderMin, sliderMax]
 					//pushable 
 					, min: this.props.range[0], max: this.props.range[1],
 					onChange: this.updateRange.bind(this),

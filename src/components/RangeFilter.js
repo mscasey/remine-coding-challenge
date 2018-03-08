@@ -31,6 +31,12 @@ export default class RangeFilter extends Component{
 	render(){
 		let min = this.state.min;
 		let max = this.state.max;
+		let sliderMin = min === 0 
+			? 0 
+			: min || this.props.range[0];
+		let sliderMax = max === 0 
+			? 0 
+			: max || this.props.range[1];
 		return 	<div key={this.props.title} className="rangeFilter">
 					<div className="rangeFilterTitle">{this.props.title}</div>
 					<input className="rangeFilterInput"
@@ -38,7 +44,7 @@ export default class RangeFilter extends Component{
 						onChange={onInput(this.updateMin.bind(this))} 
 						/>
 					<Range className="rangeFilterSlide"
-						value={[min || this.props.range[0], max || this.props.range[1]]} 
+						value={[sliderMin, sliderMax]} 
 						//pushable 
 						min={this.props.range[0]} max={this.props.range[1]}
 						onChange={this.updateRange.bind(this)}
