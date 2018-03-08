@@ -52,7 +52,7 @@ export default class RangeFilter extends Component{
 	}
 }
 
-
+//Converts input onChange events to pass data to function, instead of event
 function onInput(fn) { return (event) => fn(event.target.value) }
 
 RangeFilter.defaultProps = {

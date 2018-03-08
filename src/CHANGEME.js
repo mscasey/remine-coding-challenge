@@ -23,14 +23,21 @@ class Test extends Component {
 			.then((data) => this.setState({buildingTypes: data.data}));
 	}
 	
+	//Returns filtered list of properties
+	filterProperties(properties){
+		const filterBath = (property) => filterNumeric(this.state.bathFilter.min, this.state.bathFilter.max, property.baths);
+		const filterBeds = (property) => filterNumeric(this.state.bedFilter.min, this.state.bedFilter.max, property.beds);
+		const filterBuilding = (property) => filterMatch(this.state.buildingTypeFilter, property.buildingType.id);
+		
+		const fullFilter = (p) => filterBath(p) && filterBeds(p) && filterBuilding(p);
+		
+		const filteredLocations = this.state.locations.filter(fullFilter);
+		
+		return filteredLocations;
+	}
+	
     render() {
-		let filterBath = (property) => filterNumeric(this.state.bathFilter.min, this.state.bathFilter.max, property.baths);
-		let filterBeds = (property) => filterNumeric(this.state.bedFilter.min, this.state.bedFilter.max, property.beds);
-		let filterBuilding = (property) => filterMatch(this.state.buildingTypeFilter, property.buildingType.id);
-		
-		let fullFilter = (p) => filterBath(p) && filterBeds(p) && filterBuilding(p);
-		
-		let filteredLocations = this.state.locations.filter(fullFilter);
+		const filteredLocations = this.filterProperties(properties);
 		
         return (
             <div className="testContainer">
@@ -51,19 +58,34 @@ class Test extends Component {
 
 export default Test;
 
-	
+//Returns true if item is between max and min (inclusive)
+//@param	{number} 	min
+//@param 	{number} 	max	
+//@param 	{number}	value Value to check if between min and max
 function filterNumeric(min, max, value){
+	//If the value is null or undefined, we can't rule it out
+	if(!exists(value)) return true;
+	
+	//If there is no max or min, default to included
 	if(!exists(min) && !exists(max)) return true;
+	
 	if(exists(max) && value > max) return false;
 	if(exists(min) && value < min) return false;
 	return true;
 }
 
+//Returns true if item is in list
+//@param {array} 	matches		list to check item against
+//@param {any} 		value 		item to check if in matches	
 function filterMatch(matches, value){
+	//If the value is null or undefined, we can't rule it out
+	if(!exists(value)) return true;
+	
 	if(!matches || !matches.length) return true;
 	return matches.includes(value);
 }
 
+//Returns true if value is no undefined or null or such (but false if 0)
 function exists(value){
 	return value || value === 0;
 }
