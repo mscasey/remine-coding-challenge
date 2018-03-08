@@ -25,7 +25,7 @@ export default class SelectFilter extends Component{
 						multi
 						onChange={(selected) => this.setState({selected})}
 						options={this.props.options}
-						placeholder="Select Building Types"
+						placeholder={this.props.title}
 						value={this.state.selected}
 					/>
 				</div>;

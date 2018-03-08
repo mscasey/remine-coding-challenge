@@ -15446,6 +15446,7 @@ var Test = function (_Component) {
 
 		_this.state = {
 			locations: [],
+			buildingTypes: [],
 			bathFilter: {},
 			bedFilter: {},
 			buildingTypeFilter: []
@@ -15461,13 +15462,15 @@ var Test = function (_Component) {
 			_API2.default.getLocations().then(function (data) {
 				return _this2.setState({ locations: data.data });
 			});
+			_API2.default.getBuildingTypes().then(function (data) {
+				return _this2.setState({ buildingTypes: data.data });
+			});
 		}
 	}, {
 		key: 'render',
 		value: function render() {
 			var _this3 = this;
 
-			console.log(this.state.buildingTypeFilter);
 			var filterBath = function filterBath(property) {
 				return filterNumeric(_this3.state.bathFilter.min, _this3.state.bathFilter.max, property.baths);
 			};
@@ -15498,7 +15501,7 @@ var Test = function (_Component) {
 						onChange: function onChange(filter) {
 							return _this3.setState({ bedFilter: filter });
 						} }),
-					_react2.default.createElement(_SelectFilter2.default, { title: 'Building Type', options: buildingTypes.map(function (t) {
+					_react2.default.createElement(_SelectFilter2.default, { title: 'Building Type', options: this.state.buildingTypes.map(function (t) {
 							return { value: t.id, label: t.name };
 						}),
 						onChange: function onChange(filter) {
@@ -15515,8 +15518,6 @@ var Test = function (_Component) {
 
 exports.default = Test;
 
-
-var buildingTypes = [{ "id": 1, "name": "multiFamily" }, { "id": 2, "name": "condo" }, { "id": 3, "name": "business" }, { "id": 4, "name": "office" }, { "id": 5, "name": "singleFamily" }];
 
 function filterNumeric(min, max, value) {
 	if (!exists(min) && !exists(max)) return true;
@@ -15729,7 +15730,7 @@ var SelectFilter = function (_Component) {
 						return _this2.setState({ selected: selected });
 					},
 					options: this.props.options,
-					placeholder: 'Select Building Types',
+					placeholder: this.props.title,
 					value: this.state.selected
 				})
 			);

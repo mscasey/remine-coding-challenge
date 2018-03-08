@@ -9,6 +9,7 @@ class Test extends Component {
 		super();
 		this.state = {
 			locations: [],
+			buildingTypes: [],
 			bathFilter: {},
 			bedFilter: {},
 			buildingTypeFilter: []
@@ -18,10 +19,11 @@ class Test extends Component {
 	componentDidMount(){
 		API.getLocations()
 			.then((data) => this.setState({locations: data.data}));
+		API.getBuildingTypes()
+			.then((data) => this.setState({buildingTypes: data.data}));
 	}
 	
     render() {
-		console.log(this.state.buildingTypeFilter);
 		let filterBath = (property) => filterNumeric(this.state.bathFilter.min, this.state.bathFilter.max, property.baths);
 		let filterBeds = (property) => filterNumeric(this.state.bedFilter.min, this.state.bedFilter.max, property.beds);
 		let filterBuilding = (property) => filterMatch(this.state.buildingTypeFilter, property.buildingType.id);
@@ -37,7 +39,7 @@ class Test extends Component {
 						onChange={(filter) => this.setState({bathFilter: filter})}/>
 					<RangeFilter title="Number of Beds" range={[0,6]} 
 						onChange={(filter) => this.setState({bedFilter: filter})}/>
-                    <SelectFilter title="Building Type" options={buildingTypes.map(t => ({value: t.id, label: t.name}))} 
+                    <SelectFilter title="Building Type" options={this.state.buildingTypes.map(t => ({value: t.id, label: t.name}))} 
 						onChange={(filter) => this.setState({buildingTypeFilter: filter})} />
                 </div>
                 <RemineTable properties={filteredLocations} />
@@ -49,13 +51,6 @@ class Test extends Component {
 
 export default Test;
 
-const buildingTypes = [
-			{"id": 1,	"name": "multiFamily"},
-			{"id": 2,	"name": "condo"},
-			{"id": 3,	"name": "business"},
-			{"id": 4,	"name": "office"},
-			{"id": 5,	"name": "singleFamily"}
-			];
 	
 function filterNumeric(min, max, value){
 	if(!exists(min) && !exists(max)) return true;
