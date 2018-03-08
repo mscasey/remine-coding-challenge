@@ -23004,12 +23004,12 @@ var RangeFilter = function (_Component) {
 	}, {
 		key: 'updateMax',
 		value: function updateMax(max) {
-			this.setState({ max: max && parseInt(max) });
+			this.setState({ max: parseInt(max) || '' });
 		}
 	}, {
 		key: 'updateMin',
 		value: function updateMin(min) {
-			this.setState({ min: min && parseInt(min) });
+			this.setState({ min: parseInt(min) || '' });
 		}
 	}, {
 		key: 'componentDidUpdate',
@@ -23023,8 +23023,12 @@ var RangeFilter = function (_Component) {
 		value: function render() {
 			var min = this.state.min;
 			var max = this.state.max;
-			var sliderMin = min === 0 ? 0 : min || this.props.range[0];
-			var sliderMax = max === 0 ? 0 : max || this.props.range[1];
+
+			var rangeMin = this.props.range[0];
+			var rangeMax = this.props.range[1];
+			var sliderMin = min === 0 ? 0 : min || rangeMin;
+			var sliderMax = max === 0 ? 0 : max || rangeMax;
+
 			return _react2.default.createElement(
 				'div',
 				{ key: this.props.title, className: 'rangeFilter' },
@@ -23038,9 +23042,8 @@ var RangeFilter = function (_Component) {
 					onChange: onInput(this.updateMin.bind(this))
 				}),
 				_react2.default.createElement(_rcSlider.Range, { className: 'rangeFilterSlide',
-					value: [sliderMin, sliderMax]
-					//pushable 
-					, min: this.props.range[0], max: this.props.range[1],
+					value: [sliderMin, sliderMax],
+					min: rangeMin, max: rangeMax,
 					onChange: this.updateRange.bind(this),
 					allowCross: true
 				}),

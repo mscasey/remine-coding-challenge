@@ -15,11 +15,11 @@ export default class RangeFilter extends Component{
 	}
 	
 	updateMax(max){
-		this.setState({max: max && parseInt(max)});
+		this.setState({max: parseInt(max) || ''});
 	}
 	
 	updateMin(min){
-		this.setState({min: min && parseInt(min)});
+		this.setState({min: parseInt(min) || ''});
 	}
 	
 	componentDidUpdate(prevProps, prevState){
@@ -31,12 +31,16 @@ export default class RangeFilter extends Component{
 	render(){
 		let min = this.state.min;
 		let max = this.state.max;
+
+		const rangeMin = this.props.range[0];
+		const rangeMax = this.props.range[1];
 		let sliderMin = min === 0 
 			? 0 
-			: min || this.props.range[0];
+			: min || rangeMin;
 		let sliderMax = max === 0 
 			? 0 
-			: max || this.props.range[1];
+			: max || rangeMax;
+			
 		return 	<div key={this.props.title} className="rangeFilter">
 					<div className="rangeFilterTitle">{this.props.title}</div>
 					<input className="rangeFilterInput"
@@ -45,8 +49,7 @@ export default class RangeFilter extends Component{
 						/>
 					<Range className="rangeFilterSlide"
 						value={[sliderMin, sliderMax]} 
-						//pushable 
-						min={this.props.range[0]} max={this.props.range[1]}
+						min={rangeMin} max={rangeMax}
 						onChange={this.updateRange.bind(this)}
 						allowCross
 					/>
