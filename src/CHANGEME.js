@@ -17,9 +17,11 @@ class Test extends Component {
 	}
 	
 	componentDidMount(){
-		API.getLocations()
+		API
+			.getLocations()
 			.then((data) => this.setState({locations: data.data}));
-		API.getBuildingTypes()
+		API
+			.getBuildingTypes()
 			.then((data) => this.setState({buildingTypes: data.data}));
 	}
 	
