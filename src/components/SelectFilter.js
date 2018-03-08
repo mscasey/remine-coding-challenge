@@ -4,25 +4,25 @@ import Select  from 'react-select';
 import 'react-select/dist/react-select.css';
 import './SelectFilter.css';
 
-export default class SelectFilter extends Component{
-	constructor(props){
+export default class SelectFilter extends Component {
+	constructor(props) {
 		super(props);
 		this.state={selected: []};
 	}
 	
-	updateSelected(selected){
+	updateSelected(selected) {
 		this.setState({selected});
 	}
 	
-	componentDidUpdate(prevProps, prevState){
-		if(prevState.selected !== this.state.selected){
+	componentDidUpdate(prevProps, prevState) {
+		if(prevState.selected !== this.state.selected) {
 			this.props.onChange(this.state.selected.map(s => s.value));
 		}
 	}
 	
 	render(){
 		return 	<div key={this.props.title} className="selectFilter">
-					<div className="selectFilterTitle">{this.props.title}</div>
+					<h5 className="selectFilterTitle">{this.props.title}</h5>
 					<Select
 						className="selectFilterSelector"
 						multi

@@ -5,10 +5,10 @@ import { Column, Table } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
 class RemineTable extends Component {
-    render() {    
+	render() {    
 		let list = this.props.properties
 		list.forEach(p => p.buildingTypeName = p.buildingType.name);
-        return (
+		return (
             <div className="tableContainer">
                 <p>Table length: <strong>{this.props.properties.length}</strong></p>
 				<Table
@@ -49,11 +49,11 @@ class RemineTable extends Component {
 }
 
 RemineTable.defaultProps = {
-    properties: []
+	properties: []
 }
 
 RemineTable.propTypes = {
-    properties: PropTypes.array
+	properties: PropTypes.array
 }
 
 export default RemineTable;
