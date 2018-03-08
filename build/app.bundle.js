@@ -23195,7 +23195,7 @@ SelectFilter.propTypes = {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+				value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -23223,109 +23223,84 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var RemineTable = function (_Component) {
-    _inherits(RemineTable, _Component);
+				_inherits(RemineTable, _Component);
 
-    function RemineTable() {
-        _classCallCheck(this, RemineTable);
+				function RemineTable() {
+								_classCallCheck(this, RemineTable);
 
-        return _possibleConstructorReturn(this, (RemineTable.__proto__ || Object.getPrototypeOf(RemineTable)).apply(this, arguments));
-    }
+								return _possibleConstructorReturn(this, (RemineTable.__proto__ || Object.getPrototypeOf(RemineTable)).apply(this, arguments));
+				}
 
-    _createClass(RemineTable, [{
-        key: 'render',
-        value: function render() {
-            var list = this.props.properties;
-            list.forEach(function (p) {
-                return p.buildingTypeName = p.buildingType.name;
-            });
-            return _react2.default.createElement(
-                'div',
-                { className: 'tableContainer' },
-                _react2.default.createElement(
-                    'p',
-                    null,
-                    'Table length: ',
-                    _react2.default.createElement(
-                        'strong',
-                        null,
-                        this.props.properties.length
-                    )
-                ),
-                _react2.default.createElement(
-                    'table',
-                    { className: 'remineTable' },
-                    _react2.default.createElement(
-                        'thead',
-                        null,
-                        _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Address'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Building Type'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Beds'
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                'Baths'
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'tbody',
-                        { className: 'remineTableBody' },
-                        this.props.properties.map(function (property) {
-                            return _react2.default.createElement(
-                                'tr',
-                                { key: property.id },
-                                _react2.default.createElement(
-                                    'td',
-                                    null,
-                                    property.address
-                                ),
-                                _react2.default.createElement(
-                                    'td',
-                                    null,
-                                    property.buildingType.name
-                                ),
-                                _react2.default.createElement(
-                                    'td',
-                                    null,
-                                    property.beds
-                                ),
-                                _react2.default.createElement(
-                                    'td',
-                                    null,
-                                    property.baths
-                                )
-                            );
-                        })
-                    )
-                )
-            );
-        }
-    }]);
+				_createClass(RemineTable, [{
+								key: 'render',
+								value: function render() {
+												var list = this.props.properties;
+												list.forEach(function (p) {
+																return p.buildingTypeName = p.buildingType.name;
+												});
+												return _react2.default.createElement(
+																'div',
+																{ className: 'tableContainer' },
+																_react2.default.createElement(
+																				'p',
+																				null,
+																				'Table length: ',
+																				_react2.default.createElement(
+																								'strong',
+																								null,
+																								this.props.properties.length
+																				)
+																),
+																_react2.default.createElement(
+																				_reactVirtualized.Table,
+																				{
+																								className: 'remineTable',
+																								width: 800,
+																								height: 500,
+																								headerHeight: 20,
+																								headerClassName: 'remineTableHeader',
+																								rowHeight: 30,
+																								rowCount: list.length,
+																								rowGetter: function rowGetter(_ref) {
+																												var index = _ref.index;
+																												return list[index];
+																								},
+																								rowClassName: 'remineTableRow'
+																				},
+																				_react2.default.createElement(_reactVirtualized.Column, {
+																								label: 'Address',
+																								dataKey: 'address',
+																								width: 500
+																				}),
+																				_react2.default.createElement(_reactVirtualized.Column, {
+																								width: 150,
+																								label: 'Building Type',
+																								dataKey: 'buildingTypeName'
+																				}),
+																				_react2.default.createElement(_reactVirtualized.Column, {
+																								width: 75,
+																								label: 'Beds',
+																								dataKey: 'beds'
+																				}),
+																				_react2.default.createElement(_reactVirtualized.Column, {
+																								width: 75,
+																								label: 'Baths',
+																								dataKey: 'baths'
+																				})
+																)
+												);
+								}
+				}]);
 
-    return RemineTable;
+				return RemineTable;
 }(_react.Component);
 
 RemineTable.defaultProps = {
-    properties: []
+				properties: []
 };
 
 RemineTable.propTypes = {
-    properties: _propTypes2.default.array
+				properties: _propTypes2.default.array
 };
 
 exports.default = RemineTable;
@@ -24898,7 +24873,7 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, ".remineTable {\n    width: 100%;\n\n}\n  \n.tableContainer {\n    margin: auto;\n    padding-top: 1em;\n    width: 60%;\n}\n  \n.remineTableBody {\n    overflow-y: scroll;\n    max-height: 30vh;\n}", ""]);
+exports.push([module.i, ".remineTable {\n    width: 100%;\n\n}\n  \n.tableContainer {\n    margin: auto;\n    padding-top: 1em;\n    width: 60%;\n}\n  \n.remineTableBody {\n    overflow-y: scroll;\n    max-height: 30vh;\n}\n\n.remineTableHeader {\n\ttext-transform: none;\n}\n\n.remineTableRow {\n\ttext-align: left;\n}", ""]);
 
 // exports
 

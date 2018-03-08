@@ -13,3 +13,11 @@
     overflow-y: scroll;
     max-height: 30vh;
 }
+
+.remineTableHeader {
+	text-transform: none;
+}
+
+.remineTableRow {
+	text-align: left;
+}

@@ -1,32 +1,48 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './RemineTable.css';
+import { Column, Table } from 'react-virtualized';
+import 'react-virtualized/styles.css';
 
 class RemineTable extends Component {
     render() {    
+		let list = this.props.properties
+		list.forEach(p => p.buildingTypeName = p.buildingType.name);
         return (
             <div className="tableContainer">
                 <p>Table length: <strong>{this.props.properties.length}</strong></p>
-                <table className="remineTable">
-                    <thead>
-                        <tr>
-                            <th>Address</th>
-                            <th>Building Type</th>
-                            <th>Beds</th>
-                            <th>Baths</th>
-                        </tr>
-                    </thead>
-                    <tbody className="remineTableBody">
-                    {this.props.properties.map(property => (
-                        <tr key={property.id}>
-                            <td>{property.address}</td>
-                            <td>{property.buildingType.name}</td>
-                            <td>{property.beds}</td>
-                            <td>{property.baths}</td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
+				<Table
+					className="remineTable"
+					width={800}
+					height={500}
+					headerHeight={20}
+					headerClassName="remineTableHeader"
+					rowHeight={30}
+					rowCount={list.length}
+					rowGetter={({ index }) => list[index]}
+					rowClassName="remineTableRow"
+				  >
+					<Column
+					  label='Address'
+					  dataKey='address'
+					  width={500}
+					/>
+					<Column
+					  width={150}
+					  label='Building Type'
+					  dataKey='buildingTypeName'
+					/>
+					<Column
+					  width={75}
+					  label='Beds'
+					  dataKey='beds'
+					/>
+					<Column
+					  width={75}
+					  label='Baths'
+					  dataKey='baths'
+					/>
+				</Table>
             </div>
         );
     }
