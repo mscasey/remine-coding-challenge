@@ -1,5 +1,7 @@
 ### Remine Front End Interview Test
 
+Run with `node server.js`
+
 #### Environment
 
 You may use whatever coding environment you would like, though, we will be testing your code with the following:
